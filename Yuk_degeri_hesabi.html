@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>yuk_degeri_hesabi</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="Yuk_degeri_hesabi_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Yuk_degeri_hesabi_files/libs/quarto-html/quarto.js"></script>
+<script src="Yuk_degeri_hesabi_files/libs/quarto-html/popper.min.js"></script>
+<script src="Yuk_degeri_hesabi_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Yuk_degeri_hesabi_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Yuk_degeri_hesabi_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Yuk_degeri_hesabi_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Yuk_degeri_hesabi_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Yuk_degeri_hesabi_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Yuk_degeri_hesabi_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="yük-dağılımlarının-ihtiva-ettiği-toplam-yük-değerlerinin-hesaplanması" class="level1">
+<h1>Yük Dağılımlarının İhtiva ettiği Toplam Yük Değerlerinin Hesaplanması</h1>
+<section id="çizgisel-yük-dağılımlarının-ihtiva-ettiği-toplam-yük-değeri" class="level2">
+<h2 class="anchored" data-anchor-id="çizgisel-yük-dağılımlarının-ihtiva-ettiği-toplam-yük-değeri">Çizgisel Yük Dağılımlarının İhtiva ettiği Toplam Yük Değeri</h2>
+<p>Çizgisel bir hat boyunca tanımlanmış bir yük yoğunluğu düşünelim. Bu yük yoğunluğunu <span class="math inline">\(\lambda\)</span> ile gösterelim. Bu durumda, bu çizgisel yük dağılımı üzerinde bir diferansiyel yük miktarı aşağıdaki gibi ifade edilir:</p>
+<p><span class="math display">\[dq = \lambda \, dl\]</span></p>
+<p>Burada <span class="math inline">\(dl\)</span> çizgisel yük dağılımının birim uzunluğunu temsil eder. Bu durumda, bu çizgisel yük dağılımının ihtiva ettiği toplam yük miktarı aşağıdaki gibi hesaplanır:</p>
+<p><span class="math display">\[Q = \int dq = \int \lambda \, dl\]</span></p>
+<p>Bu integrali çözmek için,<span class="math inline">\(dl\)</span>ifadesini uygun bir şekilde ifade etmek gerekmektedir. Kartezyen koordinat sisteminde<span class="math inline">\(dl\)</span>ifadesi aşağıdaki gibi ifade edilir:</p>
+<p><span class="math display">\[dl = \sqrt{dx^2 + dy^2 + dz^2} = \sqrt{1 + \left(\frac{dy}{dx}\right)^2 + \left(\frac{dz}{dx}\right)^2} \, dx\]</span></p>
+<p>Bu durumda, çizgisel yük dağılımının ihtiva ettiği toplam yük miktarı aşağıdaki gibi hesaplanır:</p>
+<p><span class="math display">\[Q = \int \lambda \, dl = \int \lambda \sqrt{1 + \left(\frac{dy}{dx}\right)^2 + \left(\frac{dz}{dx}\right)^2} \, dx\]</span></p>
+<p>Bir örnek verelim:</p>
+<blockquote class="blockquote">
+<p><strong>Uygulama 1:</strong> Bir çizgisel yük dağılımı, <span class="math inline">\(y = x^2\)</span> eğrisi üzerinde, <span class="math inline">\(\lambda=x\, \text{(C/m)}\)</span> değeri ile tanımlanmıştır. <span class="math inline">\(0 \leq x \leq 1\)</span> aralığındaki toplam yük miktarını hesaplayınız.</p>
+<p><strong>Çözüm:</strong></p>
+<p>Çizgisel yük dağılımının ihtiva ettiği toplam yük miktarı aşağıdaki gibi hesaplanır:</p>
+<p><span class="math display">\[Q = \int \lambda \sqrt{1 + \left(\frac{dy}{dx}\right)^2} \, dx = \int_0^1 x \sqrt{1 + 4x^2} \, dx\]</span></p>
+<p>Bu integrali çözmek için, <span class="math inline">\(u = 1 + 4x^2\)</span> değişken dönüşümü yapalım. Bu durumda, <span class="math inline">\(du = 8x \, dx\)</span> olur. Bu durumda integral aşağıdaki gibi ifade edilir:</p>
+<p><span class="math display">\[Q = \int \frac{1}{8} \sqrt{u} \, du = \frac{1}{8} \cdot \frac{2}{3} u^{3/2} = \frac{1}{12} u^{3/2} = \frac{1}{12} (1 + 4x^2)^{3/2} \Bigg|_0^1\]</span><span class="math display">\[= \frac{1}{12} (5^{3/2} - 1) = \frac{5\sqrt{5} - 1}{12} \, \text{C}\]</span></p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Uygulama 2:</strong> <span class="math inline">\(x^2+y^2=a^2\)</span> çemberi üzerinde yük yoğunluğu <span class="math inline">\(\lambda=a^2\sin3\phi\, \text{(C/m)}\)</span> olan bir çizgisel yük dağılımı düşünelim. Çember üzerindeki toplam yük miktarını hesaplayınız.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Çözüm:</strong> Çizgisel yük dağılımının ihtiva ettiği toplam yük miktarı aşağıdaki gibi hesaplanır:</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Çember üzerinde tanımlanan diferansiyel uzunluk<span class="math inline">\(dl\)</span>ifadesi aşağıdaki gibi ifade edilir:</p>
+<p><span class="math display">\[dl=ad\phi\]</span></p>
+<p>Bu durumda, çizgisel yük dağılımının ihtiva ettiği toplam yük miktarı aşağıdaki gibi hesaplanır:</p>
+<p><span class="math display">\[Q = \int \lambda \, dl = \int a^2\sin3\phi \cdot a \, d\phi = a^3 \int \sin3\phi \, d\phi\]</span></p>
+<p>Bu integrali çözmek için, trigonometrik dönüşüm yapalım. Bu durumda, integral aşağıdaki gibi ifade edilir:</p>
+<p><span class="math display">\[Q = a^3 \int \sin3\phi \, d\phi = -\frac{a^3}{3} \cos3\phi \Bigg|_0^{\pi} = -\frac{a^3}{3} (\cos3\pi - \cos0)\]</span> <span class="math display">\[Q = -\frac{a^3}{3} (-1 - 1) = \frac{2a^3}{3} \, \text{C}\]</span></p>
+<p><strong>Uygulama 3:</strong> <span class="math inline">\(y=sinx\)</span> fonksiyonu üzerinde <span class="math inline">\(\lambda=2x\, \text{(C/m)}\)</span> yük yoğunluğu olan bir çizgisel yük dağılımı düşünelim. <span class="math inline">\(0 \leq x \leq \pi\)</span> aralığındaki toplam yük miktarını hesaplayınız.</p>
+<p><strong>Çözüm:</strong></p>
+<p>Çizgisel yük dağılımının ihtiva ettiği toplam yük miktarı aşağıdaki gibi hesaplanır:</p>
+<p><span class="math display">\[Q = \int \lambda \sqrt{1 + \left(\frac{dy}{dx}\right)^2} \, dx = \int_0^{\pi} 2x \sqrt{1 + \cos^2x} \, dx\]</span></p>
+<p>Bu integrali çözmek için, <span class="math inline">\(u = 1 + \cos^2x\)</span> değişken dönüşümü yapalım. Bu durumda, <span class="math inline">\(du = -2\cos x \sin x \, dx\)</span> olur. Bu durumda integral aşağıdaki gibi ifade edilir:</p>
+<p><span class="math display">\[Q = \int -\frac{1}{2} \sqrt{u} \, du = -\frac{1}{2} \cdot \frac{2}{3} u^{3/2} = -\frac{1}{3} u^{3/2} = -\frac{1}{3} (1 + \cos^2x)^{3/2} \Bigg|_0^{\pi}\]</span><span class="math display">\[= -\frac{1}{3} (2^3 - 1) = -\frac{7}{3} \, \text{C}\]</span></p>
+</blockquote>
+</section>
+<section id="yüzeysel-yük-dağılımlarının-ihtiva-ettiği-toplam-yük-değeri" class="level2">
+<h2 class="anchored" data-anchor-id="yüzeysel-yük-dağılımlarının-ihtiva-ettiği-toplam-yük-değeri">Yüzeysel Yük Dağılımlarının İhtiva ettiği Toplam Yük Değeri</h2>
+<p>Yüzeysel yük dağılımı, bir yüzey üzerinde tanımlanmış bir yük yoğunluğu ile ifade edilir. Bu durumda, bu yüzey yük dağılımı üzerinde bir diferansiyel yük miktarı aşağıdaki gibi ifade edilir:</p>
+<p><span class="math display">\[dq = \sigma \, ds\]</span></p>
+<p>Burada <span class="math inline">\(ds\)</span> yüzey yük dağılımının birim alanını temsil eder. Bu durumda, bu yüzey yük dağılımının ihtiva ettiği toplam yük miktarı aşağıdaki gibi hesaplanır:</p>
+<p><span class="math display">\[Q = \int dq = \int \sigma \, ds\]</span></p>
+<p>Bu integrali çözmek için,<span class="math inline">\(ds\)</span>ifadesini, çalışılan koordinat sistemine uygun bir şekilde ifade etmek gerekmektedir.</p>
+<blockquote class="blockquote">
+<p><strong>Uygulama 4:</strong> Yarıçapı<span class="math inline">\(a\)</span>olan bir diskin yüzeyinde tanımlanmış bir yüzeysel yük yoğunluğu <span class="math inline">\(\sigma = 3\rho^2\, \text{(C/m}^2)\)</span> olan bir yüzey yük dağılımı düşünelim. Disk üzerindeki toplam yük miktarını hesaplayınız.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Çözüm:</strong> Yüzey yük dağılımının ihtiva ettiği toplam yük miktarı aşağıdaki gibi hesaplanır: Disk üzerinde tanımlanan diferansiyel alan<span class="math inline">\(ds\)</span>ifadesi aşağıdaki gibi ifade edilir:</p>
+<p><span class="math display">\[ds_z =\rho d\rho  d\phi\]</span></p>
+<p>Bu durumda, yüzey yük dağılımının ihtiva ettiği toplam yük miktarı aşağıdaki gibi hesaplanır:</p>
+<p><span class="math display">\[Q = \int \sigma \, ds = \int_0^a \int_0^{2\pi} 3\rho^2 \cdot \rho d\rho d\phi = 3 \int_0^a \rho^3 d\rho \int_0^{2\pi} d\phi\]</span> <span class="math display">\[Q = 3 \left[\frac{\rho^4}{4}\right]_0^a \left[\phi\right]_0^{2\pi} = 3 \left[\frac{a^4}{4} - 0\right] \left[2\pi - 0\right]\]</span> <span class="math display">\[Q = 3 \cdot \frac{a^4}{4} \cdot 2\pi = \frac{3}{2} \pi a^4 \, \text{C}\]</span></p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Uygulama 5:</strong> Köşe noktaları (0,0,0), (1,0,0) ve (0,1,0) olan bir üçgenin yüzeyinde tanımlanmış bir yüzeysel yük yoğunluğu <span class="math inline">\(\sigma = 2x\, \text{(C/m}^2)\)</span> olan bir yüzey yük dağılımı düşünelim. Üçgen yüzeyindeki toplam yük miktarını hesaplayınız.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Çözüm:</strong> Köşe noktaları (0,0,0), (1,0,0) ve (0,1,0) olan üçgenin yüzeyindeki toplam yük miktarını bulmak için, yük yoğunluğu <span class="math inline">\(\sigma = 2x \, \text{C/m}^2\)</span>’yi üçgenin yüzeyi üzerinde entegre etmemiz gerekmektedir. Üçgen, <span class="math inline">\(xy\)</span> düzleminde yer alan ve <span class="math inline">\(x + y ≤ 1\)</span> koşulunu sağlayan bir bölgedir. Toplam yük, yük yoğunluğunun bu bölge üzerinde çift katlı integrali alınarak hesaplanır: <span class="math display">\[
+Q = \iint\limits_{\text{Üçgen}} \sigma \, dA
+\]</span> Öncelikle integral sınırlarını belirleriz. <span class="math inline">\(x\)</span> 0’dan 1’e kadar değişirken, <span class="math inline">\(y\)</span> 0’dan<span class="math inline">\(1 - x\)</span>’e kadar değişir. İntegrali <span class="math inline">\(x\)</span>’e göre kurarsak: <span class="math display">\[
+Q = \int_{x=0}^{1} \int_{y=0}^{1-x} 2x \, dy \, dx
+\]</span> İç integrali hesaplarsak: <span class="math display">\[
+\int_{y=0}^{1-x} 2x \, dy = 2x \left[ y \right]_{0}^{1-x} = 2x (1 - x)
+\]</span> Dış integrali hesaplarsak: <span class="math display">\[
+Q = \int_{0}^{1} 2x (1 - x) \, dx = \int_{0}^{1} (2x - 2x^2) \, dx
+\]</span> Bu integrali parçalara ayırıp çözersek: <span class="math display">\[
+\int_{0}^{1} 2x \, dx - \int_{0}^{1} 2x^2 \, dx = \left[ x^2 \right]_{0}^{1} - \left[ \frac{2x^3}{3} \right]_{0}^{1} = 1 - \frac{2}{3} = \frac{1}{3}
+\]</span> Aynı sonucu, integral sırasını değiştirerek de doğrulayabiliriz. y 0’dan 1’e kadar değişirken, x 0’dan<span class="math inline">\(1 - y\)</span>’e kadar değişir: <span class="math display">\[
+Q = \int_{y=0}^{1} \int_{x=0}^{1-y} 2x \, dx \, dy
+\]</span> İç integrali hesaplarsak: <span class="math display">\[
+\int_{x=0}^{1-y} 2x \, dx = \left[ x^2 \right]_{0}^{1-y} = (1 - y)^2
+\]</span> Dış integrali hesaplarsak: <span class="math display">\[
+Q = \int_{0}^{1} (1 - y)^2 \, dy = \left[ \frac{(1 - y)^3}{3} \right]_{0}^{1} = \frac{1}{3}
+\]</span> Her iki yöntemle de aynı sonuç elde edilir. Bu nedenle, toplam yük miktarı: <span class="math display">\[
+\boxed{\dfrac{1}{3}} \, \text{C}
+\]</span></p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Uygulama 6:</strong> Yarıçapı<span class="math inline">\(a\)</span>olan bir silindirin yüzeyinde tanımlanmış bir yüzeysel yük yoğunluğu <span class="math inline">\(\sigma = 3\rho^2\, \text{(C/m}^2)\)</span> olan bir yüzey yük dağılımı düşünelim. Silindir yüzeyindeki toplam yük miktarını hesaplayınız.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Çözüm:</strong><br>
+Toplam yük miktarını hesaplamak için, yüzey yük yoğunluğunu silindirin eğrisel yüzeyi üzerinde integral almalıyız. Silindirin yan yüzeyi için silindirik koordinat sistemi kullanılır. Burada yarıçap<span class="math inline">\(\rho = a\)</span>sabit olduğundan, yüzey alan elemanı <span class="math inline">\(ds_r = a \, d\phi \, dz\)</span> şeklinde ifade edilir. Yük yoğunluğu <span class="math inline">\(\sigma = 3\rho^2\)</span> olduğundan ve <span class="math inline">\(\rho = a\)</span> olduğu için <span class="math inline">\(\sigma = 3a^2\)</span> olur.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Adımlar:</strong> 1. <strong>İntegralin Kurulumu:</strong><br>
+<span class="math display">\[
+Q = \int \sigma \, ds_r = \int_{0}^{2\pi} \int_{0}^{L} 3a^2 \cdot a \, dz \, d\phi
+\]</span> Burada<span class="math inline">\(ds_r = a \, d\phi \, dz\)</span>olduğu için<span class="math inline">\(3a^2 \cdot a = 3a^3\)</span>yazılır. 2. <strong>İntegralin Hesaplanması:</strong><br>
+<span class="math display">\[
+Q = 3a^3 \int_{0}^{2\pi} d\phi \int_{0}^{L} dz = 3a^3 \cdot 2\pi \cdot L = 6\pi a^3 L
+\]</span> <strong>Sonuç:</strong><br>
+Toplam yük miktarı $ , $olarak bulunur.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Uygulama 7:</strong> Yarıçapı<span class="math inline">\(a\)</span>olan bir kürenin yüzeyinde tanımlanmış bir yüzeysel yük yoğunluğu <span class="math inline">\(\sigma = 2r\, \text{(C/m}^2)\)</span> olan bir yüzey yük dağılımı düşünelim. Küre yüzeyindeki toplam yük miktarını hesaplayınız.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Çözüm:</strong> Toplam yük miktarını hesaplamak için, yüzey yük yoğunluğunu kürenin yüzeyi üzerinde integral almalıyız. Kürenin yarıçapı<span class="math inline">\(r = a\)</span>olduğundan, yüzey alan elemanı <span class="math inline">\(ds_r = a^2 \sin \theta \, d\theta \, d\phi\)</span> şeklinde ifade edilir. Yük yoğunluğu <span class="math inline">\(\sigma = 2r\)</span> olduğundan ve <span class="math inline">\(r = a\)</span>olduğu için <span class="math inline">\(\sigma = 2a\)</span> olur. <strong>Adımlar:</strong> 1. <strong>İntegralin Kurulumu:</strong> <span class="math display">\[
+Q = \int \sigma \, ds_r = \int_{0}^{2\pi} \int_{0}^{\pi} 2a \cdot a^2 \sin \theta \, d\theta \, d\phi
+\]</span> Burada<span class="math inline">\(ds_r = a^2 \sin \theta \, d\theta \, d\phi\)</span>olduğu için<span class="math inline">\(2a \cdot a^2 = 2a^3\)</span>yazılır. 2. <strong>İntegralin Hesaplanması:</strong> <span class="math display">\[
+Q = 2a^3 \int_{0}^{2\pi} d\phi \int_{0}^{\pi} \sin \theta \, d\theta = 2a^3 \cdot 2\pi \cdot 2 = 8\pi a^3
+\]</span> <strong>Sonuç:</strong> Toplam yük miktarı <span class="math inline">\(\boxed{8\pi a^3} \, \text{C}\)</span> olarak bulunur.</p>
+</blockquote>
+<section id="hacimsel-yük-dağılımlarının-ihtiva-ettiği-toplam-yük-değeri" class="level3">
+<h3 class="anchored" data-anchor-id="hacimsel-yük-dağılımlarının-ihtiva-ettiği-toplam-yük-değeri">Hacimsel Yük Dağılımlarının İhtiva ettiği Toplam Yük Değeri</h3>
+<p>Hacimsel yük dağılımı, bir hacim içinde tanımlanmış bir yük yoğunluğu ile ifade edilir. Bu durumda, bu hacimsel yük dağılımı üzerinde bir diferansiyel yük miktarı aşağıdaki gibi ifade edilir:</p>
+<p><span class="math display">\[dq = \rho \, dv\]</span></p>
+<p>Burada <span class="math inline">\(dv\)</span> hacimsel yük dağılımının birim hacmini temsil eder. Bu durumda, bu hacimsel yük dağılımının ihtiva ettiği toplam yük miktarı aşağıdaki gibi hesaplanır:</p>
+<p><span class="math display">\[Q = \int dq = \int \rho \, dv\]</span></p>
+<p>Bu integrali çözmek için, <span class="math inline">\(dv\)</span> ifadesini, çalışılan koordinat sistemine uygun bir şekilde ifade etmek gerekmektedir.</p>
+<blockquote class="blockquote">
+<p><strong>Uygulama 8:</strong> Yarıçapı <span class="math inline">\(a\)</span>, yüksekliği <span class="math inline">\(L\)</span> olan bir silindirin içinde tanımlanmış bir hacimsel yük yoğunluğu <span class="math inline">\(\rho_v = 3\rho^2\, \text{(C/m}^3)\)</span> olan bir hacimsel yük dağılımı düşünelim. Silindir içindeki toplam yük miktarını hesaplayınız. <strong>Çözüm:</strong> Toplam yük miktarını hesaplamak için, hacimsel yük yoğunluğunu silindirin içinde integral almalıyız. Silindirin yarıçapı <span class="math inline">\(\rho = a\)</span>olduğundan, hacim elemanı<span class="math inline">\(dv = a \, d\rho \, d\phi \, dz\)</span> şeklinde ifade edilir. Yük yoğunluğu <span class="math inline">\(\rho_v = 3\rho^2\)</span> olduğundan ve <span class="math inline">\(\rho = a\)</span> olduğu için <span class="math inline">\(\rho_v = 3a^2\)</span> olur.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Adımlar:</strong> 1. <strong>İntegralin Kurulumu:</strong> <span class="math display">\[
+Q = \int \rho_v \, dv = \int_{0}^{2\pi} \int_{0}^{L} \int_{0}^{a} 3a^2 \cdot a \, d\rho \, dz \, d\phi
+\]</span> Burada <span class="math inline">\(dv = a \, d\rho \, dz \, d\phi\)</span> olduğu için <span class="math inline">\(3a^2 \cdot a = 3a^3\)</span> yazılır. 2. <strong>İntegralin Hesaplanması:</strong><br>
+<span class="math display">\[
+Q = 3a^3 \int_{0}^{2\pi} d\phi \int_{0}^{L} dz \int_{0}^{a} d\rho = 3a^3 \cdot 2\pi \cdot L \cdot a = 6\pi a^4 L
+\]</span></p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Uygulama 9:</strong> Yarıçapı <span class="math inline">\(a\)</span> olan bir kürenin içinde tanımlanmış bir hacimsel yük yoğunluğu <span class="math inline">\(\rho_v = 2r\, \text{(C/m}^3)\)</span> olan bir hacimsel yük dağılımı düşünelim. Küre içindeki toplam yük miktarını hesaplayınız. <strong>Çözüm:</strong> Toplam yük miktarını hesaplamak için, hacimsel yük yoğunluğunu kürenin içinde integral almalıyız. Kürenin yarıçapı <span class="math inline">\(r = a\)</span> olduğundan, hacim elemanı <span class="math inline">\(dv = a^2 \sin \theta \, d\theta \, d\phi \, dr\)</span> şeklinde ifade edilir. Yük yoğunluğu <span class="math inline">\(\rho_v = 2r\)</span> olduğundan ve <span class="math inline">\(r = a\)</span> olduğu için <span class="math inline">\(\rho_v = 2a\)</span> olur. <strong>Adımlar:</strong> 1. <strong>İntegralin Kurulumu:</strong> <span class="math display">\[
+Q = \int \rho_v \, dv = \int_{0}^{2\pi} \int_{0}^{\pi} \int_{0}^{a} 2a \cdot a^2 \sin \theta \, d\theta \, d\phi \, dr
+\]</span> Burada <span class="math inline">\(dv = a^2 \sin \theta \, d\theta \, d\phi \, dr\)</span> olduğu için<span class="math inline">\(2a \cdot a^2 = 2a^3\)</span> yazılır. 2. <strong>İntegralin Hesaplanması:</strong> <span class="math display">\[
+Q = 2a^3 \int_{0}^{2\pi} d\phi \int_{0}^{\pi} \sin \theta \, d\theta \int_{0}^{a} dr = 2a^3 \cdot 2\pi \cdot 2 \cdot a = 8\pi a^4
+\]</span> <strong>Sonuç:</strong> Toplam yük miktarı <span class="math inline">\(\boxed{8\pi a^4} \, \text{C}\)</span> olarak bulunur.</p>
+</blockquote>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
